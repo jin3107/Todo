@@ -1,0 +1,266 @@
+@use '../scss/fonts' as fonts;
+@use '../scss/colors' as colors;
+@use '../scss/variables' as variables;
+
+.tasks-container {
+  padding: 24px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  @include fonts.inter(400);
+
+  .tasks-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    position: relative;
+
+    h1, h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #262626;
+      margin: 0;
+      text-align: center;
+      @include fonts.inter(600);
+    }
+
+    .ant-btn {
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .tasks-search {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+
+    .search-container {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+  }
+
+  .ant-table-wrapper {
+    background: white;
+    border-radius: 8px;
+  }
+
+  .ant-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+                0 1px 6px -1px rgba(0, 0, 0, 0.02),
+                0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  }
+
+  .ant-statistic-title {
+    font-size: 14px;
+    color: #8c8c8c;
+  }
+
+  .ant-statistic-content {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .ant-table {
+    .ant-table-thead > tr > th {
+      background-color: #fafafa;
+      font-weight: 600;
+      color: #262626;
+    }
+
+    .ant-table-tbody > tr > td {
+      padding: 16px;
+    }
+
+    .ant-table-cell {
+      vertical-align: middle;
+    }
+  }
+
+  .column-header {
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      color: #1890ff;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  // Responsive
+  @media (max-width: 768px) {
+    padding: 16px;
+
+    .tasks-header {
+      flex-direction: column;
+      gap: 12px;
+
+      .ant-btn {
+        position: static;
+        width: 100%;
+      }
+
+      h1, h2 {
+        font-size: 22px;
+      }
+    }
+
+    .tasks-search {
+      .search-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+
+        .ant-select,
+        .ant-input,
+        .ant-btn {
+          width: 100% !important;
+        }
+      }
+    }
+
+    // Table wrapper scroll horizontal
+    .ant-card {
+      overflow-x: auto;
+    }
+
+    .ant-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .ant-table {
+      min-width: 700px; // Đảm bảo table có width tối thiểu
+      font-size: 13px;
+
+      .ant-table-thead > tr > th,
+      .ant-table-tbody > tr > td {
+        padding: 12px 8px;
+        white-space: nowrap;
+      }
+
+      // Giữ action buttons gọn
+      .ant-table-cell:last-child {
+        min-width: 100px;
+      }
+    }
+
+    .action-buttons {
+      gap: 4px;
+
+      .ant-btn-link {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 12px;
+
+    .tasks-header {
+      h1, h2 {
+        font-size: 20px;
+      }
+    }
+
+    .ant-row {
+      margin: 0 -4px !important;
+
+      .ant-col {
+        padding: 0 4px !important;
+        margin-bottom: 8px;
+      }
+    }
+
+    .ant-card {
+      margin-bottom: 12px;
+
+      .ant-statistic-title {
+        font-size: 12px;
+      }
+
+      .ant-statistic-content {
+        font-size: 18px;
+      }
+
+      .ant-statistic-content-prefix {
+        font-size: 16px;
+      }
+    }
+
+    .ant-table {
+      min-width: 650px;
+      font-size: 12px;
+
+      .ant-table-thead > tr > th,
+      .ant-table-tbody > tr > td {
+        padding: 10px 6px;
+      }
+
+      // Thu gọn các cột
+      .ant-table-cell:nth-child(1) { // Tiêu đề
+        min-width: 120px;
+      }
+
+      .ant-table-cell:nth-child(2) { // Mô tả
+        min-width: 150px;
+        max-width: 200px;
+      }
+
+      .ant-table-cell:nth-child(3), // Priority
+      .ant-table-cell:nth-child(4) { // Status
+        min-width: 100px;
+      }
+
+      .ant-table-cell:nth-child(5), // Due date
+      .ant-table-cell:nth-child(6) { // Completed date
+        min-width: 90px;
+      }
+    }
+
+    .action-buttons {
+      .ant-btn-link {
+        padding: 2px 6px;
+        font-size: 11px;
+      }
+    }
+
+    // Scroll hint shadow
+    .ant-card {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+        pointer-events: none;
+      }
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    padding: 20px;
+
+    .tasks-header {
+      h1, h2 {
+        font-size: 26px;
+      }
+    }
+  }
+}
+
