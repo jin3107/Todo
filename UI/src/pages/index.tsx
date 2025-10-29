@@ -352,14 +352,14 @@ const Tasks = () => {
       ),
       dataIndex: 'dueDate',
       key: 'dueDate',
-      width: '12%',
+      width: '13%',
       render: (date: string) => fmtDate(date, false),
     },
     {
       title: 'Ngày hoàn thành',
       dataIndex: 'completedOn',
       key: 'completedOn',
-      width: '12%',
+      width: '13%',
       render: (date?: string) => fmtDate(date, false),
     },
     {
